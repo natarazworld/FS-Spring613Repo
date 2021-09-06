@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+         
+       <!--   <bean id="st"  class="com.nt.beans.Student">
+             <property name="sno" value="101"/>
+             <property name="sname"  value="rajesh"/>
+             <property name="avg" value="90.55"/>
+         </bean> -->
+         
+         <bean id="st"  class="com.nt.beans.Student">
+             <constructor-arg name="sno" value="101"/>
+             <constructor-arg name="sname" value="rajesh"/>
+             <!-- <constructor-arg name="avg" value="89.0"/> -->
+         </bean> 
+         
+</beans>         
