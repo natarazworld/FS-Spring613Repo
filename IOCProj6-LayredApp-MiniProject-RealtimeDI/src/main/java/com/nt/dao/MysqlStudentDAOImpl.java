@@ -1,3 +1,4 @@
+//MysqlStudentDAOImpl.java
 package com.nt.dao;
 
 import java.sql.Connection;
@@ -8,14 +9,14 @@ import javax.sql.DataSource;
 
 import com.nt.bo.StudentBO;
 
-public class StudentDAOImpl implements IStudentDAO {
-	private static  final String   INSERT_STUDENT_QUERY="INSERT INTO FS_LAYERED_STUDENT VALUES(FS_SNO_SEQ.NEXTVAL,?,?,?,?,?)";
+public class MysqlStudentDAOImpl implements IStudentDAO {
+	private static  final String   INSERT_STUDENT_QUERY="INSERT INTO FS_LAYERED_STUDENT(SNAME,SADD,TOTAL,AVG,RESULT) VALUES(?,?,?,?,?)";
 	// HAS-A property
 	private DataSource ds;
 	
    // 1- param constructor for constructor injection 	
-	public StudentDAOImpl(DataSource ds) {
-		System.out.println("StudentDAOImpl:: 1- param construcftor");
+	public MysqlStudentDAOImpl(DataSource ds) {
+		System.out.println("MysqlStudentDAOImpl:: 1- param construcftor");
 		this.ds = ds;
 	}
 

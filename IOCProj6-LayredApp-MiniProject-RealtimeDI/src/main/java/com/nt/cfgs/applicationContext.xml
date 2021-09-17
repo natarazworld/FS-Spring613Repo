@@ -4,21 +4,34 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
         <!-- Cfg DriverManagerDataSource as spring bean -->
-        <bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <bean id="oradrds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
             <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
             <property name="username"  value="system"/>
-            <property name="password"  value="manager1"/>
+            <property name="password"  value="manager"/>
         </bean>
         
+        <bean id="mysqldrds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql:///fs-ntsp613db"/>
+            <property name="username"  value="root"/>
+            <property name="password"  value="root"/>
+        </bean>
+        
+        
         <!-- cfg DAO Impl class as spring bean  -->
-        <bean id="studDAO"  class="com.nt.dao.StudentDAOImpl">
-            <constructor-arg name="ds" ref="drds"/>
+        <bean id="studOraDAO"  class="com.nt.dao.OracleStudentDAOImpl">
+            <constructor-arg name="ds" ref="oradrds"/>
+        </bean>
+        
+        <bean id="studMysqlDAO"  class="com.nt.dao.MysqlStudentDAOImpl">
+            <constructor-arg name="ds" ref="mysqldrds"/>
         </bean>
         
          <!-- cfg Service Impl class as spring bean  -->
         <bean id="studService"  class="com.nt.service.StudentMgmtServiceImpl">
-          <constructor-arg name="dao" ref="studDAO"/>
+           <constructor-arg name="dao" ref="studOraDAO"/>
+      <!--     <constructor-arg name="dao" ref="studMysqlDAO"/>  -->
         </bean>
         
         <!-- cfg Controller class as spring bean  -->

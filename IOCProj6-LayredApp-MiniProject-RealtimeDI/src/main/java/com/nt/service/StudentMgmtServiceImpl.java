@@ -5,6 +5,7 @@ import com.nt.dao.IStudentDAO;
 import com.nt.dto.StudentDTO;
 
 public class StudentMgmtServiceImpl implements IStudentMgmtService {
+	//HAS-A property
 	private IStudentDAO  dao;
 	
 	public StudentMgmtServiceImpl(IStudentDAO dao) {
