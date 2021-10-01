@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- tradional code -->
+   <!-- <bean id="dep" class="com.nt.beans.Department">
+        <constructor-arg  name="deptno" value="1001"/>
+        <constructor-arg name="deptName" value="IT"/>
+        <constructor-arg name="deptLocation" value="hyd"/>
+   </bean>
+   
+   <bean id="emp"  class="com.nt.beans.Employee">
+      <property name="eno" value="1001"/>
+      <property name="ename" value="rajesh"/>
+      <property name="salary" value="54646"/>
+      <property name="dept"  ref="dep"/>
+   </bean> -->
+   
+   <!-- cfgs using C namespace and P Namespace -->
+     <bean id="dep"  class="com.nt.beans.Department"
+                 c:deptno="1001" 
+                  c:deptName="ACCOUNTS"
+                    c:deptLocation="hyd" />
+                    
+     <bean id="emp"  class="com.nt.beans.Employee" 
+                 p:eno="101" 
+                  p:ename="suresh" 
+                  p:salary="9000" 
+                  p:dept-ref="dep"/>
+     
+          
+
+</beans>

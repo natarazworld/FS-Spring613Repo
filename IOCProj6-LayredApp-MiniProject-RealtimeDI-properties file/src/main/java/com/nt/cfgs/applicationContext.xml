@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+		
+		<context:property-placeholder location="com/nt/commons/jdbc.properties" />
+		
+        <!-- Cfg DriverManagerDataSource as spring bean -->
+        <bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource"   >
+            <property  name="driverClassName" value="${jdbc.driver}"/>
+            <property name="url" value="${jdbc.url}"/>
+            <property name="username"  value="${jdbc.user}"/>
+            <property name="password"  value="${jdbc.pwd}"/>
+        </bean>
+        
+        
+        
+        <!-- cfg DAO Impl class as spring bean  -->
+        <bean id="studOraDAO"  class="com.nt.dao.OracleStudentDAOImpl">
+            <constructor-arg name="ds" ref="drds"/>
+        </bean>
+        
+        <bean id="studMysqlDAO"  class="com.nt.dao.MysqlStudentDAOImpl">
+            <constructor-arg name="ds" ref="drds"/>
+        </bean>
+        
+         <!-- cfg Service Impl class as spring bean  -->
+        <bean id="studService"  class="com.nt.service.StudentMgmtServiceImpl">
+          <!--  <constructor-arg name="dao" ref="studOraDAO"/> -->
+           <constructor-arg name="dao" ref="studMysqlDAO"/>  
+        </bean>
+        
+        <!-- cfg Controller class as spring bean  -->
+          <bean id="controller"  class="com.nt.controller.MainController">
+             <constructor-arg name="service" ref="studService"/>
+          </bean>
+        
+</beans>
+
+

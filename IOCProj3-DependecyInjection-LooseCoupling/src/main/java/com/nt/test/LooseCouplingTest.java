@@ -32,5 +32,7 @@ public class LooseCouplingTest {
 			  e.printStackTrace();
 		  }
 		  
+		  
+		  
 	}//main
 }//class
