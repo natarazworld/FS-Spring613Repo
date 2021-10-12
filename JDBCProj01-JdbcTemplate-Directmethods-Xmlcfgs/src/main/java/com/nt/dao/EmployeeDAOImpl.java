@@ -11,7 +11,8 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 	private static final String GET_EMP_DETAILS_BY_EMPNO="SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE EMPNO=?";
 	private static final String GET_EMP_DETAILS_BY_DESGS="SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE JOB IN(?,?,?)";
 	private static final String DELETE_EMPS_WITH_NO_DEPTNO="DELETE FROM EMP WHERE DEPTNO IS NULL";
-	
+	private  static final String UPDATE_EMP_SALARY_BY_DESGS="UPDATE EMP SET SAL=SAL+? WHERE JOB IN(?,?)";
+	private  static final String INSERT_EMPLOYEE="INSERT INTO EMP(EMPNO,ENAME,JOB,SAL) VALUES(EMPNO_SEQ.NEXTVAL,?,?,?)";
 	private JdbcTemplate jt;
 	
 	public EmployeeDAOImpl(JdbcTemplate jt) {
@@ -46,6 +47,18 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 	@Override
 	public int deleteEmpsNotHavingDeptNo() {
 		int count=jt.update(DELETE_EMPS_WITH_NO_DEPTNO);
+		return count;
+	}
+
+	@Override
+	public int addBonusToEmployeesByDesgs(String desg1, String desg2, float bonus) {
+		int count=jt.update(UPDATE_EMP_SALARY_BY_DESGS,bonus,desg1,desg2);
+		return count;
+	}
+	
+	@Override
+	public int insertEmployee(String ename, String desg, float salary) {
+		int count=jt.update(INSERT_EMPLOYEE,ename,desg,salary);
 		return count;
 	}
 

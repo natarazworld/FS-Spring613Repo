@@ -44,6 +44,20 @@ public class EmployeeMgmtServiceImpl implements IEmployeeMgmtService {
 		int count=dao.deleteEmpsNotHavingDeptNo();
 		return count+" emps are fired becoz they do not have desg";
 	}
+
+	@Override
+	public String depositeSalaryWithBonusByDesgs(float bonusAmount, String desg1, String desg2) {
+		   int count=dao.addBonusToEmployeesByDesgs(desg1, desg2, bonusAmount);
+		return  count+" no.of  employees are benifited with Bonus";
+	}
+	
+	@Override
+	public String registerEmployee(String ename, String job, float sal) {
+		
+		//use dao
+		int count=dao.insertEmployee(ename, job, sal);
+		return count==1? "Employee registered":"Employee not registered";
+	}
 	
 
 }
