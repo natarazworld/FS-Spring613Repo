@@ -16,7 +16,7 @@
                    <td>${emp.sal} </td>
                    <td>     
                        <a href="edit?no=${emp.empno}"><img src="resources/images/edit.png" width="30" height="30"></a>
-                        <a href="delete?no=${emp.empno}"><img src="resources/images/delete.jpg" width="30" height="30"></a>
+                        <a href="delete?no=${emp.empno}" onclick="return confirm('Do want to delete?')"><img src="resources/images/delete.jpg" width="30" height="30"></a>
                    </td>
                  </tr>
                </c:forEach>
